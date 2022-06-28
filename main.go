@@ -2,19 +2,18 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/beom-yun/sbcoin/blockchain"
+	"log"
+	"net/http"
 )
 
-func main() {
-	chain := blockchain.GetBlockchain()
-	chain.AddBlock("Second Block")
-	chain.AddBlock("Third Block")
-	chain.AddBlock("Fourth Block")
+const port string = ":4000"
 
-	for _, block := range chain.AllBlocks() {
-		fmt.Printf("Data: %s\n", block.Data)
-		fmt.Printf("Hash: %s\n", block.Hash)
-		fmt.Printf("Prev Hash: %s\n\n", block.PrevHash)
-	}
+func home(rw http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(rw, "Hello from home!")
+}
+
+func main() {
+	http.HandleFunc("/", home)
+	fmt.Printf("Linstening on http://localhost%s\n", port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }
