@@ -61,7 +61,7 @@ func (b *blockchain) AllBlocks() []*Block {
 var ErrNotFound = errors.New("block not found")
 
 func (b *blockchain) GetBlock(height int) (*Block, error) {
-	if height < len(b.blocks) || height > len(b.blocks) {
+	if height > len(b.blocks) {
 		return nil, ErrNotFound
 	}
 	return b.blocks[height-1], nil
