@@ -1,7 +1,7 @@
 package main
 
-import "github.com/beom-yun/sbcoin/cli"
+import "github.com/beom-yun/sbcoin/blockchain"
 
 func main() {
-	cli.Start()
+	blockchain.Blockchain()
 }
